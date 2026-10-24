@@ -1,0 +1,71 @@
+{
+    "keywords":  {
+                     "type":  "list",
+                     "description":  "唤醒关键词：群消息里出现任意一个，就当作在叫她，并开启会话窗口",
+                     "default":  [
+                                     "大肥鱼",
+                                     "啥鱼",
+                                     "傻鱼"
+                                 ]
+                 },
+    "window_minutes":  {
+                           "type":  "int",
+                           "description":  "会话窗口时长（分钟），从叫她那一刻开始计时，到点立刻结束",
+                           "default":  5
+                       },
+    "sliding":  {
+                    "type":  "bool",
+                    "description":  "窗口内新消息是否延长窗口（关闭=固定 5 分钟，到点立刻结束）",
+                    "default":  false
+                },
+    "reply_on_at":  {
+                        "type":  "bool",
+                        "description":  "@ 她时也开启会话窗口",
+                        "default":  true
+                    },
+    "min_reply_interval_seconds":  {
+                                       "type":  "int",
+                                       "description":  "两次回复之间至少间隔多少秒（期间的消息她不接）",
+                                       "default":  6
+                                   },
+    "max_per_minute":  {
+                           "type":  "int",
+                           "description":  "每分钟最多回复几条，超过就让她自己说一句困了然后闭嘴（0 表示不限制）",
+                           "default":  5
+                       },
+    "sleepy_instruction":  {
+                               "type":  "string",
+                               "description":  "超限时给她的临时指令（让她用自己的语气表达困了/要睡了）",
+                               "default":  "你现在困得不行，只能用一两句话表达你想睡觉、要下线了。不要回答用户这条消息，不要提问，不要邀请对方继续聊，说完就结束。"
+                           },
+    "sleepy_seconds":  {
+                           "type":  "int",
+                           "description":  "说完困了之后保持沉默多少秒（期间包括 @ 她也不回）",
+                           "default":  120
+                       },
+    "daze_enabled":  {
+                         "type":  "bool",
+                         "description":  "窗口结束一段时间后又被叫醒时，让她先表现一下「愣神/走神」",
+                         "default":  true
+                     },
+    "daze_instruction":  {
+                             "type":  "string",
+                             "description":  "被重新唤醒时给她的临时指令",
+                             "default":  "你刚在走神发呆，被这一声叫才回过神来。先用一两句话表现出「啊？愣神了/走神了」的状态，再自然接上对方的话，不要长篇大论。"
+                         },
+    "judge_enabled":  {
+                          "type":  "bool",
+                          "description":  "窗口内判断「这句是不是在跟她说」，判断为不是在跟她说就不插嘴（会多一次很轻量的模型调用）",
+                          "default":  true
+                      },
+    "judge_instruction":  {
+                              "type":  "string",
+                              "description":  "判断用的提示词，要求模型只输出 1 或 0",
+                              "default":  "你是一个判断器，只输出一个字符：1 表示「在跟机器人说话」，0 表示「群友之间在聊天」。不要输出任何其它内容。"
+                          },
+    "judge_max_per_minute":  {
+                                 "type":  "int",
+                                 "description":  "每分钟最多做几次「是不是在跟她说」的判断，超了就一律不插嘴（控制额外费用）",
+                                 "default":  10
+                             }
+}
